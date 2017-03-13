@@ -17,8 +17,10 @@ public class ManagerFlat implements FlatDAO {
         this.dbConnection = dbConnection;
         this.dbUser = dbUser;
         this.dbPassword = dbPassword;
+        DbProperties props = new DbProperties();
         try {
-            this.conn = DriverManager.getConnection(dbConnection,dbUser,dbPassword);
+          //  this.conn = DriverManager.getConnection(dbConnection,dbUser,dbPassword);
+            this.conn = DriverManager.getConnection(props.getUrl(),props.getUser(),props.getPassword());
         } catch (SQLException e) {
             e.printStackTrace();
         }
