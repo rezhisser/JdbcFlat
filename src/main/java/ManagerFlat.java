@@ -125,6 +125,8 @@ public class ManagerFlat implements FlatDAO {
         Statement st = conn.createStatement();
         try {
             st.execute("DROP TABLE IF EXISTS Flats");
+            st.execute("DROP TABLE IF EXISTS Region");
+            st.execute("DROP TABLE IF EXISTS Adress");
             st.execute("CREATE TABLE Flats (id_flat INT NOT NULL AUTO_INCREMENT PRIMARY KEY, price INT, area INT, rooms INT, id_region INT, id_adress INT)");
             st.execute("CREATE TABLE Region (id_region INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20) NOT NULL)");
             st.execute("CREATE TABLE Adress (id_adress INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20) NOT NULL)");

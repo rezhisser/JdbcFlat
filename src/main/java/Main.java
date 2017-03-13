@@ -18,12 +18,8 @@ public class Main {
     //можно ли параметром задать имя поля
 
     public static void main(String[] args) throws SQLException {
-
-        String connection = "jdbc:mysql://tm231541.mysql.ukraine.com.ua:3306/tm231541_java";
-        String user = "tm231541_java";
-        String password = "fmqdr5d4";
-
-        ManagerFlat mf = new ManagerFlat(connection,user,password);
+        DbProperties props = new DbProperties();
+        ManagerFlat mf = new ManagerFlat(props.getUrl(),props.getUser(),props.getPassword());
 
         try {
             mf.initDB();
