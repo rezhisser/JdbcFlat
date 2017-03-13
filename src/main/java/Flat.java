@@ -2,20 +2,7 @@
  * Created by VADYM on 13.03.2017.
  */
 
-/**
- * fl_region
 
- id_region, name
-
-
- fl_adress
-
- id_adress, name
-
-
- fl_flat
- id_flat, price, area, rooms, id_region, id_adress
- */
 public class Flat {
     private int idFlat;
     private int priceFlat;

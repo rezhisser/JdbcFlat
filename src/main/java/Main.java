@@ -7,14 +7,15 @@ import java.sql.*;
 public class Main {
 
 /*
-    static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/mydb";
-    static final String DB_USER = "root";
-    static final String DB_PASSWORD = "88**VA02";
+Спроектировать базу «Квартиры». Каждая запись
+в базе содержит данные о квартире (район,
+адрес, площадь, кол. комнат, цена). Сделать
+возможность выборки квартир из списка по
+параметрам.
 
 */
 
     //Разобраться, как правильно добавлять AUTO_INCREMENT (если такая запись существует - не добавлять)
-    //Узнать, как хранить параметры доступка к БД в файле
     //можно ли параметром задать имя поля
 
     public static void main(String[] args) throws SQLException {
