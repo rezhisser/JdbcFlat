@@ -17,16 +17,39 @@ public class Main {
 
     //Разобраться, как правильно добавлять AUTO_INCREMENT (если такая запись существует - не добавлять)
     //можно ли параметром задать имя поля
+    //как правильно разместить метод printResult чтоб использовать несколько раз без дублирования кода
 
     public static void main(String[] args) throws SQLException {
 
-        ManagerFlat mf = new ManagerFlat();
+        ManagerAddress ma = new ManagerAddress();
 
-        try {
-            mf.initDB();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        Address a1 = new Address("Popova 12/1");
+        Address a2 = new Address("Shevcenka 125");
+        Address a3 = new Address("Rudenka 55");
+        Address a4 = new Address("Solomii 18");
+
+        ma.create(a1);
+        ma.create(a2);
+        ma.create(a3);
+        ma.create(a4);
+
+        ma.getAddress();
+
+        ManagerRegion mr = new ManagerRegion();
+
+        Region r1 = new Region("Kyiv");
+        Region r2 = new Region("Cherkasy");
+        Region r3 = new Region("Odesa");
+        Region r4 = new Region("Lviv");
+
+        mr.create(r1);
+        mr.create(r2);
+        mr.create(r3);
+        mr.create(r4);
+
+        mr.getRegion();
+
+        ManagerFlat mf = new ManagerFlat();
 
         Flat fl1 = new Flat(70000, 120, 4, 1, 1);
         Flat fl2 = new Flat(70000, 120, 2, 2, 2);
@@ -39,28 +62,20 @@ public class Main {
         Flat fl9 = new Flat(34550, 125, 4, 1, 3);
         Flat fl10 = new Flat(35400, 123, 1, 4, 4);
 
-        try {
-            mf.create(fl1);
-            mf.create(fl2);
-            mf.create(fl3);
-            mf.create(fl4);
-            mf.create(fl5);
-            mf.create(fl6);
-            mf.create(fl7);
-            mf.create(fl8);
-            mf.create(fl9);
-            mf.create(fl10);
-            mf.create(fl10);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+        mf.create(fl1);
+        mf.create(fl2);
+        mf.create(fl3);
+        mf.create(fl4);
+        mf.create(fl5);
+        mf.create(fl6);
+        mf.create(fl7);
+        mf.create(fl8);
+        mf.create(fl9);
+        mf.create(fl10);
+        mf.create(fl10);
 
-        try {
-            mf.getFlat();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        mf.getFlat();
 
         System.out.println();
         mf.getFlatByPrice(70000);

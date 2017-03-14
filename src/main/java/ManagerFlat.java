@@ -8,14 +8,16 @@ public class ManagerFlat implements FlatDAO {
 
     protected Connection conn = null;
 
-
-
     public ManagerFlat() {
 
         DbProperties props = new DbProperties();
         try {
-          //  this.conn = DriverManager.getConnection(dbConnection,dbUser,dbPassword);
             this.conn = DriverManager.getConnection(props.getUrl(),props.getUser(),props.getPassword());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            initDB();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -30,7 +32,21 @@ public class ManagerFlat implements FlatDAO {
 
     public void getFlatByPrice(int pr) throws SQLException {
 
-        PreparedStatement ps = conn.prepareStatement("SELECT * FROM Flats WHERE price = ?");
+       // PreparedStatement ps = conn.prepareStatement("SELECT * FROM Flats WHERE price = ?");
+        PreparedStatement ps = conn.prepareStatement("SELECT\n" +
+                "id_flat,\n" +
+                "price,\n" +
+                "area,\n" +
+                "rooms,\n" +
+                "Flats.id_region,\n" +
+                "Region.name AS Region_name,\n" +
+                "Flats.id_adress,\n" +
+                "Address.name AS Address_name\n" +
+                "FROM Flats\n" +
+                "JOIN Address ON Flats.id_adress = Address.id_address\n" +
+                "JOIN Region ON Flats.id_region = Region.id_region\n" +
+                "WHERE price = ?");
+
 
             ps.setInt(1, pr);
             ps.executeQuery();
@@ -96,11 +112,7 @@ public class ManagerFlat implements FlatDAO {
         Statement st = conn.createStatement();
         try {
             st.execute("DROP TABLE IF EXISTS Flats");
-            st.execute("DROP TABLE IF EXISTS Region");
-            st.execute("DROP TABLE IF EXISTS Adress");
             st.execute("CREATE TABLE Flats (id_flat INT NOT NULL AUTO_INCREMENT PRIMARY KEY, price INT, area INT, rooms INT, id_region INT, id_adress INT)");
-            st.execute("CREATE TABLE Region (id_region INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20) NOT NULL)");
-            st.execute("CREATE TABLE Adress (id_adress INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20) NOT NULL)");
         } finally {
             st.close();
         }
