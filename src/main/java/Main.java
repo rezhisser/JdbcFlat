@@ -19,8 +19,8 @@ public class Main {
     //можно ли параметром задать имя поля
 
     public static void main(String[] args) throws SQLException {
-        DbProperties props = new DbProperties();
-        ManagerFlat mf = new ManagerFlat(props.getUrl(),props.getUser(),props.getPassword());
+
+        ManagerFlat mf = new ManagerFlat();
 
         try {
             mf.initDB();

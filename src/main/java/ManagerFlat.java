@@ -5,18 +5,13 @@ import java.sql.*;
  */
 public class ManagerFlat implements FlatDAO {
 
-    protected  String dbConnection;
-    protected  String dbUser;
-    protected  String dbPassword;
+
     protected Connection conn = null;
 
-    public ManagerFlat() {
-    }
 
-    public ManagerFlat(String dbConnection, String dbUser, String dbPassword) {
-        this.dbConnection = dbConnection;
-        this.dbUser = dbUser;
-        this.dbPassword = dbPassword;
+
+    public ManagerFlat() {
+
         DbProperties props = new DbProperties();
         try {
           //  this.conn = DriverManager.getConnection(dbConnection,dbUser,dbPassword);
@@ -24,30 +19,6 @@ public class ManagerFlat implements FlatDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getDbConnection() {
-        return dbConnection;
-    }
-
-    public void setDbConnection(String dbConnection) {
-        this.dbConnection = dbConnection;
-    }
-
-    public String getDbUser() {
-        return dbUser;
-    }
-
-    public void setDbUser(String dbUser) {
-        this.dbUser = dbUser;
-    }
-
-    public String getDbPassword() {
-        return dbPassword;
-    }
-
-    public void setDbPassword(String dbPassword) {
-        this.dbPassword = dbPassword;
     }
 
     public void getFlat() throws SQLException {
